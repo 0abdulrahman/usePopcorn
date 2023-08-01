@@ -9,8 +9,10 @@ function Movie({ movie, openedMovie, setOpenedMovie, setCloseWList, setCloseWatc
     }
   }
 
+  const activeStyle = { backgroundColor: "#5b40a3", color: "#fff" };
+
   return (
-    <article onClick={handleClick}>
+    <article onClick={handleClick} style={openedMovie === movie.imdbID ? activeStyle : null}>
       <img src={movie.Poster} alt={movie.Title} />
       <div>
         <h3 className="fs-4">{movie.Title}</h3>

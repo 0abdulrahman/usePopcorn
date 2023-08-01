@@ -1,12 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useKey } from "./CustomHooks/useKey";
 
 function Header({ setSearchResults, setLoading, setError }) {
   const [search, setSearch] = useState("");
   const [totalResults, setTotalResults] = useState(0);
+  const searchInput = useRef(null);
   const key = "c8cc698c";
   function handleSearch(e) {
     setSearch(e.target.value);
   }
+
+  useKey("Enter", () => {
+    if (document.activeElement === searchInput.current) return;
+    searchInput.current.focus();
+    setSearch("");
+  });
 
   useEffect(() => {
     const controller = new AbortController();
@@ -55,6 +63,7 @@ function Header({ setSearchResults, setLoading, setError }) {
           className=" flex-fill"
           value={search}
           onChange={(e) => handleSearch(e)}
+          ref={searchInput}
         />
         <p className="mb-0 d-none d-md-block">
           Found <span>{totalResults}</span> results
