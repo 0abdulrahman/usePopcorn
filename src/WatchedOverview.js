@@ -1,14 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import WatchedList from "./WatchedList";
 import SelectedMovie from "./SelectedMovie";
 
-function WatchedOverview({ closeWatched, setCloseWatched, openedMovie, closeWList, setCloseWList }) {
+function WatchedOverview({ closeWatched, setCloseWatched, openedMovie, closeWList, setCloseWList, setOpenedMovie }) {
   const [watchedList, setWatchedList] = useState([]);
   let totalRuntime = 0;
   watchedList.length > 0 &&
     watchedList.forEach(
       (movie) => (totalRuntime += Number.isInteger(parseInt(movie.runtime)) ? parseInt(movie.runtime) : 0)
     );
+
+  useEffect(() => {
+    const localData = JSON.parse(localStorage.getItem("watchedList")) ?? [];
+    setWatchedList(localData);
+  }, []);
 
   return (
     <section id="watched">
@@ -39,6 +44,7 @@ function WatchedOverview({ closeWatched, setCloseWatched, openedMovie, closeWLis
         closeWList={closeWList}
         setCloseWList={setCloseWList}
         setCloseWatched={setCloseWatched}
+        setOpenedMovie={setOpenedMovie}
       />
     </section>
   );

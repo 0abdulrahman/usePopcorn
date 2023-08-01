@@ -12,7 +12,7 @@ function App() {
   const [error, setError] = useState("");
   const [closeMovies, setCloseMovies] = useState(false);
   const [closeWatched, setCloseWatched] = useState(false);
-  const [closeWList, setCloseWList] = useState(true);
+  const [closeWList, setCloseWList] = useState(false);
   const [openedMovie, setOpenedMovie] = useState(null);
   return (
     <>
@@ -43,6 +43,7 @@ function App() {
           closeWatched={closeWatched}
           setCloseWatched={setCloseWatched}
           openedMovie={openedMovie}
+          setOpenedMovie={setOpenedMovie}
           closeWList={closeWList}
           setCloseWList={setCloseWList}
         />

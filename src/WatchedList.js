@@ -1,8 +1,10 @@
 import WatchedListMovie from "./WatchedListMovie";
 
-function WatchedList({ watchedList, setWatchedList, closeWList, setCloseWList, setCloseWatched }) {
+function WatchedList({ watchedList, setWatchedList, closeWList, setCloseWList, setCloseWatched, setOpenedMovie }) {
   function handleDelete(id) {
-    setWatchedList((prev) => prev.filter((movie) => movie.imdbID !== id));
+    const newData = watchedList.filter((movie) => movie.imdbID !== id);
+    setWatchedList(newData);
+    localStorage.setItem("watchedList", JSON.stringify(newData));
   }
 
   function handleClose() {
@@ -19,7 +21,14 @@ function WatchedList({ watchedList, setWatchedList, closeWList, setCloseWList, s
       {!closeWList && watchedList.length > 0 && (
         <ul className="watched-list">
           {watchedList.map((movie) => (
-            <WatchedListMovie key={movie.imdbID} movie={movie} handleDelete={handleDelete} />
+            <WatchedListMovie
+              key={movie.imdbID}
+              movie={movie}
+              handleDelete={handleDelete}
+              setCloseWList={setCloseWList}
+              setOpenedMovie={setOpenedMovie}
+              setCloseWatched={setCloseWatched}
+            />
           ))}
         </ul>
       )}

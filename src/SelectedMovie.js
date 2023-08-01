@@ -23,6 +23,7 @@ function SelectedMovie({ openedMovie, watchedList, setWatchedList, setCloseWatch
         runtime: selectedMovie.Runtime,
       };
       setWatchedList((prev) => [...prev, newMovie]);
+      localStorage.setItem("watchedList", JSON.stringify([...watchedList, newMovie]));
     }
   }
 

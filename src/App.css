@@ -210,7 +210,6 @@ article p span {
 
 .watched-list li {
   display: flex;
-  /* justify-content: space-between; */
   align-items: center;
   gap: 0.75rem;
   border-radius: 5px;
@@ -219,8 +218,13 @@ article p span {
   padding-right: 0.5rem;
 }
 
+.watched-list li > div {
+  cursor: pointer;
+}
+
 .watched-list li img {
   max-width: 80px;
+  cursor: pointer;
 }
 
 .watched-list li h3 {
