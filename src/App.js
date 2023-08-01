@@ -37,7 +37,9 @@ function App() {
           {error && <p>{error}</p>}
           {loading && <LoadingSpinner autoHeight={false} />}
           {closeMovies && <p className="placeholder-p">Content hidden</p>}
-          {searchResults.length < 1 && <p className="placeholder-p">Start searching to show content...</p>}
+          {searchResults.length < 1 && !closeMovies && (
+            <p className="placeholder-p">Start searching to show content...</p>
+          )}
         </Movies>
         <WatchedOverview
           closeWatched={closeWatched}
