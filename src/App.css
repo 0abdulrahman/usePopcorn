@@ -263,8 +263,7 @@ article p span {
 .close-watched-list {
   position: absolute;
   top: 10px;
-  right: 50%;
-  transform: translateX(50%);
+  right: 10px;
   background-color: #fff;
   color: #000;
   border-radius: 50px;
